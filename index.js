@@ -12,11 +12,23 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// app.use(
+//   cors({
+//     origin: true, // Allow all origins (for development; adjust for production)
+//     credentials: true,
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   })
+// );
+
 app.use(
   cors({
-    origin: true, // Allow all origins (for development; adjust for production)
-    credentials: true,
+    origin: [
+      "http://localhost:5173",
+      "https://notes-app-frontend-swart.vercel.app"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
   })
 );
 
